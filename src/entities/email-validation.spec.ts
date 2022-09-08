@@ -19,6 +19,12 @@ describe('Email validation', () => {
         expect(Email.validate(email)).toBeFalsy()
     })
 
+    it('should not accept strings larger than 320 chars', () => {
+        const email = 'l'.repeat(64) + '@' + 'd'.repeat(128) + '.' + 'd'.repeat(127)
+
+        expect(Email.validate(email)).toBeFalsy()
+    })
+
     it('should accept valid email', () => {
         const email = 'any@mail.com'
 
