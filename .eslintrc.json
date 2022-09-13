@@ -15,6 +15,7 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "no-useless-constructor": "off"
     }
 }
