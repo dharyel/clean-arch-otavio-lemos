@@ -35,7 +35,7 @@ describe('Register user on mailing list use case', () => {
         expect(response).toEqual(left(new InvalidEmailError()))
     })
 
-    it('should not add user with invalid name to mailing list', async () => {
+    it('should not add user with invalid name to mailing list ', async () => {
         const users: UserData[] = []
 
         const repo: UserRepository = new InMemoryUserRepository(users)
