@@ -1,5 +1,5 @@
-import { UserRepository } from '../../../../usecases/'
-import { UserData } from '../../../../entities/'
+import { UserRepository } from '@/usecases/'
+import { UserData } from '@/entities/'
 
 export class InMemoryUserRepository implements UserRepository {
     constructor (private readonly repository: UserData[]) {
