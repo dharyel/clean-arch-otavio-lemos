@@ -13,3 +13,10 @@ export const badRequest = (data: any): HttpResponse => {
         body: data
     }
 }
+
+export const serverError = (data: any): HttpResponse => {
+    return {
+        statusCode: 500,
+        body: data
+    }
+}
