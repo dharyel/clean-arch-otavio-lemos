@@ -1,7 +1,7 @@
 import { UserData } from '@/entities'
 import { RegisterUserOnMailingList, UserRepository } from '@/usecases'
 import { HttpRequest, HttpResponse } from '@/web-controllers'
-import { InMemoryUserRepository } from '@/test/usecases/register-user-on-mailing-list/repository'
+import { InMemoryUserRepository } from '@/usecases/register-user-on-mailing-list/repository'
 import { RegisterUserController } from '@/web-controllers/register-user-controller'
 import { InvalidEmailError, InvalidNameError } from '@/entities/errors'
 import { MissingParamError } from '@/web-controllers/errors/missing-param-error'
