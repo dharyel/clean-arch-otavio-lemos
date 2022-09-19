@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc",
     "test": "jest --passWithNoTests --noStackTrace --runInBand --silent",
     "test-verbose": "jest --passWithNoTests --runInBand",
