@@ -8,7 +8,6 @@ module.exports = {
         '!**/test/**',
         '!**/config/**'
     ],
-    testEnvironment: 'node',
     transform: {
         '.+\\.ts$': 'ts-jest'
     },
