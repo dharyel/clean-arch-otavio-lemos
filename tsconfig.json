@@ -11,6 +11,5 @@
         "@test/*": ["test/*"]
       }
     },
-    "exclude": ["src/test"],
     "include": ["src"]
   }
