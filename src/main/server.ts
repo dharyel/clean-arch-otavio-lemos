@@ -6,7 +6,7 @@ MongoHelper.connect(process.env.MONGO_URL)
         const app = (await import('./config/app')).default
 
         app.listen(5000, () => {
-            console.log('Rerver running at http://localhost:5000')
+            console.log('Server running at http://localhost:5000')
         })
     })
     .catch(console.error)
