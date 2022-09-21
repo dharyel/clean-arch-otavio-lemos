@@ -1,4 +1,4 @@
-import { UserData } from '@/entities/'
+import { User, UserData } from '@/entities/'
 import { UserRepository } from '@/usecases/register-user-on-mailing-list/ports/'
 import { RegisterUserOnMailingList } from '@/usecases/register-user-on-mailing-list/'
 import { InMemoryUserRepository } from '@/usecases/register-user-on-mailing-list/repository'
@@ -11,10 +11,11 @@ describe('Register user on mailing list use case', () => {
         const usecase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
         const name = 'any_name'
         const email = 'any@email.com'
-        const response = await usecase.perform({ name, email })
-        const user = await repo.findUserByEmail('any@email.com')
+        const user = (User.create({ name, email })).value as User
+        const response = await usecase.perform(user)
+        const addedUser = await repo.findUserByEmail('any@email.com')
 
-        expect(user.name).toBe('any_name')
-        expect(response.value.name).toBe('any_name')
+        expect(addedUser.name).toBe('any_name')
+        expect(response.name).toBe('any_name')
     })
 })
