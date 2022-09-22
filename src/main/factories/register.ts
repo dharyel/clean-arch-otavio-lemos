@@ -10,12 +10,11 @@ import { RegisterAndSendEmail } from '@/usecases/register-and-send-email/registe
 export const makeRegisterAndSendEmailController = (): RegisterAndSendEmailController => {
     // const inMemoryUserRepository = new InMemoryUserRepository([])
     // const registerUserOnMailingListUseCase = new RegisterUserOnMailingList(inMemoryUserRepository)
-    const mongodbUserRepository = new MongodbUserRepository()
-    const registerUserOnMailingListUseCase = new RegisterUserOnMailingList(mongodbUserRepository)
+    const mongoDbUserRepository = new MongodbUserRepository()
+    const registerUserOnMailingListUseCase = new RegisterUserOnMailingList(mongoDbUserRepository)
     const emailService = new NodemailerEmailService()
     const sendEmailUseCase = new SendEmail(getEmailOptions(), emailService)
     const registerAndSendEmailUseCase = new RegisterAndSendEmail(registerUserOnMailingListUseCase, sendEmailUseCase)
     const registerUserController = new RegisterAndSendEmailController(registerAndSendEmailUseCase)
-
     return registerUserController
 }
