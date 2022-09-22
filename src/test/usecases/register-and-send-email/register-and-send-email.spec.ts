@@ -1,4 +1,4 @@
-import { User, UserData } from '@/entities'
+import { UserData } from '@/entities'
 import { Either, right } from '@/shared'
 import { RegisterUserOnMailingList, UserRepository } from '@/usecases'
 import { MailServiceError } from '@/usecases/errors'
@@ -43,7 +43,7 @@ class MailServiceMock implements EmailService {
 }
 
 describe('Register and send email to user', () => {
-    it('should add user with complete data to mailing list', async () => {
+    it('should register user and send email with valid data', async () => {
         const users: UserData[] = []
 
         const repo: UserRepository = new InMemoryUserRepository(users)
@@ -53,16 +53,15 @@ describe('Register and send email to user', () => {
         const registerAndSendEmailUseCase: RegisterAndSendEmail = new RegisterAndSendEmail(registerUseCase, sendEmailUseCase)
         const name = 'any_name'
         const email = 'any@email.com'
-        const response: User = (await registerAndSendEmailUseCase.perform({ name, email })).value as User
+        const response: UserData = (await registerAndSendEmailUseCase.perform({ name, email })).value as UserData
         const user = await repo.findUserByEmail('any@email.com')
 
         expect(user.name).toBe('any_name')
-        expect(response.name.value).toBe('any_name')
+        expect(response.name).toBe('any_name')
         expect(mailServiceMock.sendCount).toBe(1)
-        expect(response.name.value).toBe('any_name')
     })
 
-    it('should not add user with invalid e-mail to mailing list', async () => {
+    it('should not register user and send email with invalid e-mail', async () => {
         const users: UserData[] = []
 
         const repo: UserRepository = new InMemoryUserRepository(users)
@@ -77,7 +76,7 @@ describe('Register and send email to user', () => {
         expect(response.name).toEqual('InvalidEmailError')
     })
 
-    it('should not add user with invalid name to mailing list ', async () => {
+    it('should not register user and send email with invalid name', async () => {
         const users: UserData[] = []
 
         const repo: UserRepository = new InMemoryUserRepository(users)
